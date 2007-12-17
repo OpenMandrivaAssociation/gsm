@@ -16,7 +16,6 @@ Patch0:         gsm-1.0.10-dyn.patch
 Patch1:         gsm-1.0-pl10-includes.patch
 Patch3:         gsm-1.0-pl10-shared.diff
 Patch4:         gsm-1.0-pl10-add-includefile.patch  
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Contains runtime shared libraries for libgsm, an implementation of
