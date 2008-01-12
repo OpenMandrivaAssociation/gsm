@@ -7,7 +7,7 @@
 Summary:	Shared libraries for GSM speech compressor
 Name:		gsm
 Version:	1.0.12
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		System/Libraries
 License:	distributable
 URL:		http://kbs.cs.tu-berlin.de/~jutta/toast.html
