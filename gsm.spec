@@ -1,4 +1,4 @@
-%define	srcver	1.0-pl12
+%define	srcver	1.0-pl13
 
 %define	major	1
 %define libname	%mklibname %{name} %{major}
@@ -6,12 +6,12 @@
 
 Summary:	Shared libraries for GSM speech compressor
 Name:		gsm
-Version:	1.0.12
-Release:	%mkrel 4
+Version:	1.0.13
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	distributable
 URL:		http://kbs.cs.tu-berlin.de/~jutta/toast.html
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	http://user.cs.tu-berlin.de/~jutta/gsm/%{name}-%{version}.tar.gz
 Patch0:         gsm-1.0.10-dyn.patch
 Patch1:         gsm-1.0-pl10-includes.patch
 Patch3:         gsm-1.0-pl10-shared.diff
