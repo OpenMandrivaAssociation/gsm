@@ -7,11 +7,11 @@
 Summary:	Shared libraries for GSM speech compressor
 Name:		gsm
 Version:	1.0.13
-Release:	%mkrel 3
+Release:	%mkrel 4
 Group:		System/Libraries
 License:	distributable
-URL:		http://kbs.cs.tu-berlin.de/~jutta/toast.html
-Source0:	http://user.cs.tu-berlin.de/~jutta/gsm/%{name}-%{version}.tar.gz
+URL:		http://www.quut.com/gsm/
+Source0:	http://www.quut.com/gsm/%{name}-%{version}.tar.gz
 Patch0:         gsm-1.0.10-dyn.patch
 Patch1:         gsm-1.0-pl10-includes.patch
 Patch3:         gsm-1.0-pl10-shared.diff
