@@ -134,3 +134,80 @@ ln -snf toast %{buildroot}%{_bindir}/tcat
 %{_libdir}/*.so
 %{_includedir}/gsm
 %{_mandir}/man3/*
+
+
+%changelog
+* Tue May 03 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.13-5mdv2011.0
++ Revision: 664929
+- mass rebuild
+
+* Wed Feb 09 2011 Jani Välimaa <wally@mandriva.org> 1.0.13-4
++ Revision: 637048
+- fix url (mdv#62457)
+- fix source
+
+* Thu Dec 02 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0.13-3mdv2011.0
++ Revision: 605502
+- rebuild
+
+* Mon Mar 15 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0.13-2mdv2010.1
++ Revision: 520115
+- rebuilt for 2010.1
+
+* Mon Jun 22 2009 Oden Eriksson <oeriksson@mandriva.com> 1.0.13-1mdv2010.0
++ Revision: 387953
+- 1.0.13
+
+* Fri Dec 19 2008 Oden Eriksson <oeriksson@mandriva.com> 1.0.12-4mdv2009.1
++ Revision: 316207
+- rebuild
+
+* Tue Jun 17 2008 Thierry Vignaud <tv@mandriva.org> 1.0.12-3mdv2009.0
++ Revision: 221104
+- rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Sat Jan 12 2008 Thierry Vignaud <tv@mandriva.org> 1.0.12-2mdv2008.1
++ Revision: 150238
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Sun Jul 22 2007 Tomasz Pawel Gajc <tpg@mandriva.org> 1.0.12-1mdv2008.0
++ Revision: 54450
+- new version
+- new devel library policy
+- drop patch 3
+- correct provides/obsoletes
+
+
+* Tue Jan 16 2007 Nicolas Lécureuil <neoclust@mandriva.org> 1.0.10-13mdv2007.0
++ Revision: 109569
+- Update patch4
+
+* Tue Jan 16 2007 Nicolas Lécureuil <neoclust@mandriva.org> 1.0.10-12mdv2007.1
++ Revision: 109509
+- Add patch4: Add a .h file (needed by kcall)
+
+* Wed Nov 22 2006 Oden Eriksson <oeriksson@mandriva.com> 1.0.10-11mdv2007.1
++ Revision: 86346
+- bunzip patches
+- Import gsm
+
+* Sat Dec 31 2005 Mandriva Linux Team <http://www.mandrivaexpert.com/> 1.0.10-10mdk
+- Rebuild
+
+* Fri May 06 2005 Oden Eriksson <oeriksson@mandriva.com> 1.0.10-9mdk
+- rpmlint fixes
+
+* Sun Sep 12 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 1.0.10-8mdk
+- provide a shared lib as well (P3 was taken from dag's package)
+
+* Thu Apr 15 2004 Gwenole Beauchesne <gbeauchesne@mandrakesoft.com> 1.0.10-7mdk
+- fix missing includes, use correct args to utime()
+- build static library with PIC as it is built into a DSO (gstreamer-plugins)
+
