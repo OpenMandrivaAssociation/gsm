@@ -1,5 +1,5 @@
---- Makefile	1996-07-02 16:36:06.000000000 +0200
-+++ Makefile.oden	2004-09-11 17:39:00.308986936 +0200
+--- ./Makefile	1996-07-02 16:36:06.000000000 +0200
++++ ./Makefile.oden	2004-09-11 17:39:00.308986936 +0200
 @@ -30,6 +30,10 @@
  ######### define this, and read about the GSM_OPT_WAV49 option in the
  ######### manual page on gsm_option(3).
