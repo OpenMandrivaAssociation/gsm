@@ -6,7 +6,7 @@
 Summary:	Shared libraries for GSM speech compressor
 Name:		gsm
 Version:	1.0.13
-Release:	11
+Release:	12
 Group:		System/Libraries
 License:	distributable
 Url:		http://www.quut.com/gsm/
