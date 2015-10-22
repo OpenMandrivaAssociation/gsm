@@ -3,6 +3,8 @@
 %define libname	%mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 
+%define _disable_lto 1
+
 Summary:	Shared libraries for GSM speech compressor
 Name:		gsm
 Version:	1.0.13
