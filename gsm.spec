@@ -7,16 +7,16 @@
 
 Summary:	Shared libraries for GSM speech compressor
 Name:		gsm
-Version:	1.0.13
-Release:	21
+Version:	1.0.17
+Release:	1
 Group:		System/Libraries
 License:	distributable
 Url:		http://www.quut.com/gsm/
 Source0:	http://www.quut.com/gsm/%{name}-%{version}.tar.gz
 Patch0:         gsm-1.0.10-dyn.patch
 Patch1:         gsm-1.0-pl10-includes.patch
-Patch3:         gsm-1.0-pl10-shared.diff
-Patch4:         gsm-1.0-pl10-add-includefile.patch  
+Patch2:         gsm-1.0-pl10-shared.diff
+Patch3:         gsm-1.0-pl10-add-includefile.patch  
 
 %description
 Contains runtime shared libraries for libgsm, an implementation of
@@ -73,6 +73,7 @@ sed -i 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
 rm -f %{buildroot}%{_libdir}/*.a
 ln -snf toast %{buildroot}%{_bindir}/untoast
 ln -snf toast %{buildroot}%{_bindir}/tcat
+ln -s gsm/gsm.h %{buildroot}%{_includedir}
 
 %files
 %doc COPYRIGHT ChangeLog* README
@@ -85,5 +86,6 @@ ln -snf toast %{buildroot}%{_bindir}/tcat
 %files -n %{devname}
 %{_libdir}/*.so
 %{_includedir}/gsm
+%{_includedir}/*.h
 %{_mandir}/man3/*
 
