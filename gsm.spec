@@ -13,10 +13,10 @@ Group:		System/Libraries
 License:	distributable
 Url:		http://www.quut.com/gsm/
 Source0:	http://www.quut.com/gsm/%{name}-%{version}.tar.gz
-Patch0:         gsm-1.0.10-dyn.patch
-Patch1:         gsm-1.0-pl10-includes.patch
-Patch2:         gsm-1.0-pl10-shared.diff
-Patch3:         gsm-1.0-pl10-add-includefile.patch  
+Patch0:	gsm-1.0.10-dyn.patch
+Patch1:	gsm-1.0-pl10-includes.patch
+Patch3:	gsm-1.0-pl10-shared.diff
+Patch4:	gsm-1.0-pl10-add-includefile.patch
 
 %description
 Contains runtime shared libraries for libgsm, an implementation of
