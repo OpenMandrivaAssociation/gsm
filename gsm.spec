@@ -61,7 +61,10 @@ full-rate speech transcoding, prI-ETS 300 036, which uses RPE/LTP
 
 %prep
 %setup -qn %{name}-%{srcver}
-%apply_patches
+%patch0 -p1
+%patch1 -p1 -b .includes
+%patch3 -p0 -b .shared
+%patch4 -p0 -b .add_h_file
 
 %build
 sed -i 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
