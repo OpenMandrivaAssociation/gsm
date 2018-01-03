@@ -1,3 +1,4 @@
+%define srcver 1.0-pl17
 %define	major 1
 %define libname	%mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
@@ -59,7 +60,7 @@ full-rate speech transcoding, prI-ETS 300 036, which uses RPE/LTP
 (residual pulse excitation/long term prediction) coding at 13 kbit/s.
 
 %prep
-%setup -q
+%setup -qn %{name}-%{srcver}
 %apply_patches
 
 %build
