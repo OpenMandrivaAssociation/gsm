@@ -74,6 +74,7 @@ sed -i 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
 %makeinstall_std
 
 rm -f %{buildroot}%{_libdir}/*.a
+mkdir -p %{buildroot}%{_bindir}
 ln -snf toast %{buildroot}%{_bindir}/untoast
 ln -snf toast %{buildroot}%{_bindir}/tcat
 ln -s gsm/gsm.h %{buildroot}%{_includedir}
