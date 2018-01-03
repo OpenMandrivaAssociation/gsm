@@ -1,5 +1,4 @@
-%define	srcver	1.0-pl13
-%define	major	1
+%define	major 1
 %define libname	%mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 
@@ -60,7 +59,7 @@ full-rate speech transcoding, prI-ETS 300 036, which uses RPE/LTP
 (residual pulse excitation/long term prediction) coding at 13 kbit/s.
 
 %prep
-%setup -qn %{name}-%{srcver}
+%setup -q
 %apply_patches
 
 %build
@@ -68,7 +67,7 @@ sed -i 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
 %make
 
 %install
-%makeinstall
+%makeinstall_std
 
 rm -f %{buildroot}%{_libdir}/*.a
 ln -snf toast %{buildroot}%{_bindir}/untoast
