@@ -71,7 +71,7 @@ sed -i 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
 %make
 
 %install
-%makeinstall_std
+%makeinstall
 
 rm -f %{buildroot}%{_libdir}/*.a
 mkdir -p %{buildroot}%{_bindir}
