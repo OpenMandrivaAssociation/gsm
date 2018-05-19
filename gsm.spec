@@ -1,13 +1,13 @@
-%define srcver 1.0-pl17
+%define srcver %(echo %{version} |cut -d. -f1-2)-pl%(echo %{version} |cut -d. -f3-)
 %define	major 1
 %define libname	%mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 
-%define _disable_lto 1
+#define _disable_lto 1
 
 Summary:	Shared libraries for GSM speech compressor
 Name:		gsm
-Version:	1.0.17
+Version:	1.0.18
 Release:	1
 Group:		System/Libraries
 License:	distributable
@@ -67,7 +67,8 @@ full-rate speech transcoding, prI-ETS 300 036, which uses RPE/LTP
 %patch4 -p0 -b .add_h_file
 
 %build
-sed -i 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
+sed -i -e 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
+sed -i -e 's|^LD.*|LD=%{__cc} %{optflags} %{ldflags}|g' Makefile
 %make
 
 %install
@@ -92,4 +93,3 @@ ln -s gsm/gsm.h %{buildroot}%{_includedir}
 %{_includedir}/gsm
 %{_includedir}/*.h
 %{_mandir}/man3/*
-
