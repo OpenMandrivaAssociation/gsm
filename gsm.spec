@@ -60,19 +60,15 @@ full-rate speech transcoding, prI-ETS 300 036, which uses RPE/LTP
 (residual pulse excitation/long term prediction) coding at 13 kbit/s.
 
 %prep
-%setup -qn %{name}-%{srcver}
-%patch0 -p1
-%patch1 -p1 -b .includes
-%patch3 -p0 -b .shared
-%patch4 -p0 -b .add_h_file
+%autosetup -n %{name}-%{srcver} -p1
 
 %build
 sed -i -e 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
 sed -i -e 's|^LD.*|LD=%{__cc} %{optflags} %{ldflags}|g' Makefile
-%make
+%make_build
 
 %install
-%makeinstall
+%make_install
 
 rm -f %{buildroot}%{_libdir}/*.a
 mkdir -p %{buildroot}%{_bindir}
