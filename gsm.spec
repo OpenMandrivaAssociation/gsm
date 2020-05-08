@@ -1,22 +1,23 @@
 %define srcver %(echo %{version} |cut -d. -f1-2)-pl%(echo %{version} |cut -d. -f3-)
-%define	major 1
-%define libname	%mklibname %{name} %{major}
-%define devname %mklibname %{name} -d
 
-#define _disable_lto 1
+%global ver_major 1
+%global ver_minor 0
+%global ver_patch 19
+
+%define major 1
+%define libname %mklibname %{name} %{major}
+%define devname %mklibname %{name} -d
 
 Summary:	Shared libraries for GSM speech compressor
 Name:		gsm
-Version:	1.0.18
-Release:	2
+Version:	1.0.19
+Release:	1
 Group:		System/Libraries
-License:	distributable
+License:	Distributable
 Url:		http://www.quut.com/gsm/
 Source0:	http://www.quut.com/gsm/%{name}-%{version}.tar.gz
-Patch0:	gsm-1.0.10-dyn.patch
-Patch1:	gsm-1.0-pl10-includes.patch
-Patch3:	gsm-1.0-pl10-shared.diff
-Patch4:	gsm-1.0-pl10-add-includefile.patch
+Patch0:         %{name}-makefile.patch
+Patch1:         %{name}-warnings.patch
 
 %description
 Contains runtime shared libraries for libgsm, an implementation of
@@ -29,7 +30,7 @@ rate, i.e. a frame rate of 50 Hz) into 260 bits; for compatibility
 with typical UNIX applications, our implementation turns frames of 160
 16-bit linear samples into 33-byte frames (1650 Bytes/s).
 The quality of the algorithm is good enough for reliable speaker
-recognition; even music often survives transcoding in recognizable 
+recognition; even music often survives transcoding in recognizable
 form (given the bandwidth limitations of 8 kHz sampling rate).
 
 The interfaces offered are a front end modelled after compress(1), and
@@ -37,55 +38,103 @@ a library API.  Compression and decompression run faster than realtime
 on most SPARCstations.  The implementation has been verified against the
 ETSI standard test patterns.
 
-%package -n	%{libname}
-Summary:	Shared libraries for GSM speech compressor
-Group:          System/Libraries
-
-%description -n	%{libname}
-Contains runtime shared libraries for libgsm, an implementation of
-the European GSM 06.10 provisional standard for full-rate speech
-transcoding, prI-ETS 300 036, which uses RPE/LTP (residual pulse
-excitation/long term prediction) coding at 13 kbit/s.
-
-%package -n	%{devname}
-Summary:	Development libraries for a GSM speech compressor
-Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel
-
-%description -n	%{devname}
-Contains header files and development libraries for libgsm, an
-implementation of the European GSM 06.10 provisional standard for
-full-rate speech transcoding, prI-ETS 300 036, which uses RPE/LTP
-(residual pulse excitation/long term prediction) coding at 13 kbit/s.
-
-%prep
-%autosetup -n %{name}-%{srcver} -p1
-
-%build
-sed -i -e 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
-sed -i -e 's|^LD.*|LD=%{__cc} %{optflags} %{ldflags}|g' Makefile
-%make_build
-
-%install
-%make_install
-
-rm -f %{buildroot}%{_libdir}/*.a
-mkdir -p %{buildroot}%{_bindir}
-ln -snf toast %{buildroot}%{_bindir}/untoast
-ln -snf toast %{buildroot}%{_bindir}/tcat
-ln -s gsm/gsm.h %{buildroot}%{_includedir}
-
 %files
 %doc COPYRIGHT ChangeLog* README
 %{_bindir}/*
 %{_mandir}/man1/*
 
+#----------------------------------------------------------------------------
+
+%package -n %{libname}
+Summary:	Shared libraries for GSM speech compressor
+Group:		System/Libraries
+
+%description -n %{libname}
+Contains runtime shared libraries for libgsm, an implementation of
+the European GSM 06.10 provisional standard for full-rate speech
+transcoding, prI-ETS 300 036, which uses RPE/LTP (residual pulse
+excitation/long term prediction) coding at 13 kbit/s.
+
+GSM 06.10 compresses frames of 160 13-bit samples (8 kHz sampling
+rate, i.e. a frame rate of 50 Hz) into 260 bits; for compatibility
+with typical UNIX applications, our implementation turns frames of 160
+16-bit linear samples into 33-byte frames (1650 Bytes/s).
+The quality of the algorithm is good enough for reliable speaker
+recognition; even music often survives transcoding in recognizable
+form (given the bandwidth limitations of 8 kHz sampling rate).
+
+The interfaces offered are a front end modelled after compress(1), and
+a library API.  Compression and decompression run faster than realtime
+on most SPARCstations.  The implementation has been verified against the
+ETSI standard test patterns.
+
 %files -n %{libname}
 %{_libdir}/libgsm.so.%{major}*
 
+#----------------------------------------------------------------------------
+
+%package -n %{devname}
+Summary:	Development libraries for a GSM speech compressor
+Group:		Development/C
+Requires:	%{libname} = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
+Provides:	lib%{name}-devel = %{EVRD}
+
+%description -n %{devname}
+Contains header files and development libraries for libgsm, an
+implementation of the European GSM 06.10 provisional standard for
+full-rate speech transcoding, prI-ETS 300 036, which uses RPE/LTP
+(residual pulse excitation/long term prediction) coding at 13 kbit/s.
+
+GSM 06.10 compresses frames of 160 13-bit samples (8 kHz sampling
+rate, i.e. a frame rate of 50 Hz) into 260 bits; for compatibility
+with typical UNIX applications, our implementation turns frames of 160
+16-bit linear samples into 33-byte frames (1650 Bytes/s).
+The quality of the algorithm is good enough for reliable speaker
+recognition; even music often survives transcoding in recognizable
+form (given the bandwidth limitations of 8 kHz sampling rate).
+
+The interfaces offered are a front end modelled after compress(1), and
+a library API.  Compression and decompression run faster than realtime
+on most SPARCstations.  The implementation has been verified against the
+ETSI standard test patterns.
+
 %files -n %{devname}
-%{_libdir}/*.so
+%{_libdir}/libgsm.so
 %{_includedir}/gsm
-%{_includedir}/*.h
+%{_includedir}/gsm.h
 %{_mandir}/man3/*
+
+#----------------------------------------------------------------------------
+
+%prep
+%setup -q -n %{name}-%{srcver}
+%autopatch -p1
+
+sed -i -e 's|gcc -ansi -pedantic|%{__cc} -ansi -pedantic|g' Makefile
+sed -i -e 's|^LD.*|LD=%{__cc} %{optflags} %{ldflags}|g' Makefile
+
+%build
+export LDFLAGS="%{ldflags}"
+%make_build all SO_MAJOR=%{ver_major} SO_MINOR=%{ver_minor} SO_PATCH=%{ver_patch}
+
+%install
+export LDFLAGS="%{ldflags}"
+mkdir -p %{buildroot}{%{_bindir},%{_includedir}/gsm,%{_libdir},%{_mandir}/{man1,man3}}
+make install \
+	INSTALL_ROOT=%{buildroot}%{_prefix} \
+	GSM_INSTALL_INC=%{buildroot}%{_includedir}/gsm \
+	GSM_INSTALL_LIB=%{buildroot}%{_libdir} \
+	SO_MAJOR=%{ver_major} SO_MINOR=%{ver_minor} SO_PATCH=%{ver_patch}
+
+mkdir -p %{buildroot}%{_bindir}
+ln -snf toast %{buildroot}%{_bindir}/untoast
+ln -snf toast %{buildroot}%{_bindir}/tcat
+
+ln -s gsm/gsm.h %{buildroot}%{_includedir}
+
+%check
+# This is to ensure that the patch creates the proper library version.
+[ -f %{buildroot}%{_libdir}/libgsm.so.%{version} ]
+export LDFLAGS="%{ldflags}"
+make addtst
