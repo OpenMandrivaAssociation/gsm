@@ -21,7 +21,7 @@ Version:	1.0.19
 Release:	3
 Group:		System/Libraries
 License:	Distributable
-Url:		http://www.quut.com/gsm/
+Url:		https://www.quut.com/gsm/
 Source0:	http://www.quut.com/gsm/%{name}-%{version}.tar.gz
 Patch0:         %{name}-makefile.patch
 Patch1:         %{name}-warnings.patch
