@@ -26,6 +26,7 @@ Source0:	http://www.quut.com/gsm/%{name}-%{version}.tar.gz
 Patch0:         %{name}-makefile.patch
 Patch1:         %{name}-warnings.patch
 
+BuildRequires:	make
 %description
 Contains runtime shared libraries for libgsm, an implementation of
 the European GSM 06.10 provisional standard for full-rate speech
